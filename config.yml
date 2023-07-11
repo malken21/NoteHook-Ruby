@@ -1,0 +1,20 @@
+# ポート番号
+Port: 80
+
+# ノートしてから 何秒後に Discord に送信するか
+Sleep: 120
+
+# Webhook のシークレット
+Secret: "Secret Text"
+
+# DiscordのWebhookのURL
+Discord_Webhook: "Discord Webhook URL"
+
+# Misskeyインスタンスのドメイン
+Instance: "misskey.io"
+
+# ノートの公開範囲の設定 (public,home,followers,specified)
+Visibility: ["public", "home"]
+
+# Discordに送信されるメッセージ
+Message: "ノートが作成されました https://%<Instance>s/notes/%<note_id>s"
