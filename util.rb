@@ -3,14 +3,14 @@ require "uri"
 
 # レスポンス
 def result(socket, status)
-  response = { status: status ? "Allow" : "Deny" }
+  response = { status: status ? "Allow" : "Deny" }.to_json
 
-  socket.puts "HTTP/1.1 200 OK"
-  socket.puts "Content-Type: application/json"
-  socket.puts "Content-Length: #{response.to_json.bytesize}"
-  socket.puts "Connection: close"
-  socket.puts
-  socket.print response.to_json
+  socket.print "HTTP/1.1 200 OK\r\n" +
+               "Content-Type: application/json\r\n" +
+               "Content-Length: #{response.bytesize}\r\n" +
+               "Connection: close\r\n"
+  socket.print "\r\n"
+  socket.print response
   socket.close
 end
 

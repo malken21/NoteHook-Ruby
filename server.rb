@@ -26,19 +26,16 @@ loop do
     # メソッド と パス 取得
     method, path = socket.gets.split(" ")
 
+    # ヘッダー 解析
+    headers = {}
+    while header = socket.gets.chomp
+      break if header.empty?
+      key, value = header.split(": ")
+      headers[key.downcase] = value
+    end
+
     # Post リクエスト かつ パスが / の場合
-    if method == "POST" && path == "/"
-
-      # ヘッダー 解析
-      headers = {}
-      while header = socket.gets.chomp
-        break if header.empty?
-        key, value = header.split(": ")
-        headers[key.downcase] = value
-      end
-
-      # 全ての ヘッダー コンソール出力
-      p headers
+    if method == "POST" && path == "/post"
 
       # シークレットが同じ
       if headers["x-misskey-hook-secret"] == config["Secret"]
@@ -65,7 +62,7 @@ loop do
           sleep config["Sleep"]
 
           # Discordに表示する文字 生成
-          text = format(config["Message"], Instance: config["Instance"], note_id: note["id"])
+          text = format(config["Message"], Instance: headers["x-misskey-host"], note_id: note["id"])
 
           # Discordに送信
           sendDiscord(text, config["Discord_Webhook"])

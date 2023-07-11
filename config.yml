@@ -10,11 +10,8 @@ Secret: "Secret Text"
 # DiscordのWebhookのURL
 Discord_Webhook: "Discord Webhook URL"
 
-# Misskeyインスタンスのドメイン
-Instance: "misskey.io"
-
 # ノートの公開範囲の設定 (public,home,followers,specified)
 Visibility: ["public", "home"]
 
 # Discordに送信されるメッセージ
-Message: "ノートが作成されました https://%<Instance>s/notes/%<note_id>s"
+Message: "ノートが作成されました https://%<host>s/notes/%<note_id>s"
