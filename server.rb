@@ -7,8 +7,13 @@ require "./util.rb"
 # config.yml 読み込み
 config = open("config.yml", "r") { |f| YAML.load(f) }
 
+# ポート番号
+port = config["Port"]
+
 # TCPサーバー 作成
-server = TCPServer.new config["Port"]
+server = TCPServer.new port
+
+puts "Start Server Port: #{port}"
 
 # 無限ループ
 loop do
