@@ -34,17 +34,17 @@ loop do
       while header = socket.gets.chomp
         break if header.empty?
         key, value = header.split(": ")
-        headers[key] = value
+        headers[key.downcase] = value
       end
 
       # 全ての ヘッダー コンソール出力
       p headers
 
       # シークレットが同じ
-      if headers["X-Misskey-Hook-Secret"] == config["Secret"]
+      if headers["x-misskey-hook-secret"] == config["Secret"]
 
         # リクエストボディ 読み込み
-        body = socket.read(headers["Content-Length"].to_i)
+        body = socket.read(headers["content-length"].to_i)
 
         # 結果 レスポンス ( 許可 )
         result(socket, true)
