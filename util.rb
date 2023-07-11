@@ -1,13 +1,16 @@
 require "net/http"
 require "uri"
-require "json"
 
 # レスポンス
 def result(socket, status)
-  socket.puts "HTTP/1.0 200 OK"
-  socket.puts "Content-Type: text/plain"
+  response = { status: status ? "Allow" : "Deny" }
+
+  socket.puts "HTTP/1.1 200 OK"
+  socket.puts "Content-Type: application/json"
+  socket.puts "Content-Length: #{response.to_json.bytesize}"
+  socket.puts "Connection: close"
   socket.puts
-  socket.puts status ? "Allow" : "Deny"
+  socket.print response.to_json
   socket.close
 end
 
