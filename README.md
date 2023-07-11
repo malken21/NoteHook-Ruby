@@ -6,4 +6,6 @@ Misskey でノートを作ると自動で Discord の指定したチャンネル
 
 `ruby server.rb` でスタート
 
+Misskey に設定する URLは `http://ホスト名:ポート番号/post` になります
+
 [NoteHook](https://github.com/malken21/NoteHook) このリポジトリの Ruby版です
