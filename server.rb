@@ -69,9 +69,9 @@ loop do
           # Discordに送信する文字 コンソール出力
           p text
         end
+        # スレッド 停止
+        Thread.stop
       end
-      # スレッド 停止
-      Thread.stop
     end
 
     # 結果 レスポンス ( 拒否 )
