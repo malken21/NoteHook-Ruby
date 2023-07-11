@@ -62,7 +62,7 @@ loop do
           sleep config["Sleep"]
 
           # Discordに表示する文字 生成
-          text = format(config["Message"], Instance: headers["x-misskey-host"], note_id: note["id"])
+          text = format(config["Message"], host: headers["x-misskey-host"], note_id: note["id"])
 
           # Discordに送信
           sendDiscord(text, config["Discord_Webhook"])
